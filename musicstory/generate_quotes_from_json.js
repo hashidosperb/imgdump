@@ -1,12 +1,42 @@
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 const sharp = require('sharp');
 
 const BG_DIR = path.join(__dirname, 'music_bgs2');
 const FONT_DIR = path.join(__dirname, '..', 'Syne_Mono');
-const FONT_URL_WOFF2 = `file://${path.join(FONT_DIR, 'SyneMono-Regular.woff2').replace(/ /g, '%20')}`;
-const FONT_URL_WOFF = `file://${path.join(FONT_DIR, 'SyneMono-Regular.woff').replace(/ /g, '%20')}`;
-const FONT_URL_TTF = `file://${path.join(FONT_DIR, 'SyneMono-Regular.ttf').replace(/ /g, '%20')}`;
+
+function ensureFontInstalled() {
+  const fontFileName = 'SyneMono-Regular.ttf';
+  const sourcePath = path.join(FONT_DIR, fontFileName);
+  if (!fs.existsSync(sourcePath)) return;
+
+  const platform = os.platform();
+  let targetDir = null;
+
+  if (platform === 'darwin') {
+    targetDir = path.join(os.homedir(), 'Library', 'Fonts');
+  } else if (platform === 'linux') {
+    targetDir = path.join(os.homedir(), '.local', 'share', 'fonts');
+  } else if (platform === 'win32') {
+    targetDir = path.join(process.env.LOCALAPPDATA || path.join(os.homedir(), 'AppData', 'Local'), 'Microsoft', 'Windows', 'Fonts');
+  }
+
+  if (targetDir) {
+    try {
+      fs.mkdirSync(targetDir, { recursive: true });
+      const targetPath = path.join(targetDir, fontFileName);
+      if (!fs.existsSync(targetPath)) {
+        fs.copyFileSync(sourcePath, targetPath);
+        console.log(`Installed custom font to ${targetPath}`);
+      }
+    } catch (e) {
+      console.warn('Could not auto-install font:', e.message);
+    }
+  }
+}
+
+ensureFontInstalled();
 
 const CANVAS_WIDTH = 1080;
 const CANVAS_HEIGHT = 1350;
@@ -148,9 +178,7 @@ function buildSvg({ quote, label, style, textFit }) {
     <style>
       @font-face {
         font-family: 'Syne Mono';
-        src: url('${FONT_URL_WOFF2}') format('woff2'),
-             url('${FONT_URL_WOFF}') format('woff'),
-             url('${FONT_URL_TTF}') format('truetype');
+        src: local('Syne Mono'), local('SyneMono-Regular');
         font-weight: 400;
         font-style: normal;
       }
