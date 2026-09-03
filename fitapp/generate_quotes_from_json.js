@@ -192,7 +192,7 @@ function buildSvg({ quote, label, style, textFit }) {
     ${tspans}
   </text>
 
-  <text x="${CANVAS_WIDTH / 2}" y="${CANVAS_HEIGHT - 100}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="20" fill="${style.text}" opacity="0.88">@myfavoriteplaylists</text>
+  <text x="${CANVAS_WIDTH / 2}" y="${CANVAS_HEIGHT - 100}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="28" fill="${style.text}" opacity="0.88">@fitapp.in</text>
 </svg>`.trim();
 }
 
