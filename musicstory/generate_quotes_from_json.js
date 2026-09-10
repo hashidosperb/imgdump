@@ -3,7 +3,7 @@ const path = require('path');
 const os = require('os');
 const sharp = require('sharp');
 
-const BG_DIR = path.join(__dirname, 'music_bgs2');
+const BG_DIR = path.join(__dirname, 'music_bgs4');
 const FONT_DIR = path.join(__dirname, '..', 'Syne_Mono');
 
 function ensureFontInstalled() {
@@ -270,9 +270,9 @@ async function generate(inputPath, outputDir, outputFile) {
   console.log(`CSV saved to: ${outputFile}`);
 }
 
-const inputPath = process.argv[2] || path.join(__dirname, 'singers_posts_100.json');
-const outputDir = process.argv[3] || path.join(__dirname, 'singers_posts_100');
-const outputFile = process.argv[4] || path.join(__dirname, 'singers_posts_100.csv');
+const inputPath = process.argv[2] || path.join(__dirname, 'music_quotes_200.json');
+const outputDir = process.argv[3] || path.join(__dirname, 'music_quotes_200');
+const outputFile = process.argv[4] || path.join(__dirname, 'music_quotes_200.csv');
 
 generate(inputPath, outputDir, outputFile).catch((err) => {
   console.error('Generation failed:', err.message);
