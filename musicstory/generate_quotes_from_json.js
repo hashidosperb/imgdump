@@ -3,14 +3,45 @@ const path = require('path');
 const os = require('os');
 const sharp = require('sharp');
 
-const BG_DIR = path.join(__dirname, 'music_bgs4');
-const FONT_DIR = path.join(__dirname, '..', 'Syne_Mono');
+const BG_DIR = path.join(__dirname, 'music_bgs5');
 
-function ensureFontInstalled() {
-  const fontFileName = 'SyneMono-Regular.ttf';
-  const sourcePath = path.join(FONT_DIR, fontFileName);
-  if (!fs.existsSync(sourcePath)) return;
+const FONTS = [
+  // {
+  //   name: 'Caacupe One',
+  //   dirName: 'Caacupe_One',
+  //   fileName: 'CaacupeOne-Regular.ttf',
+  //   family: "'Caacupe One', monospace"
+  // },
+  // {
+  //   name: 'Syne Mono',
+  //   dirName: 'Syne_Mono',
+  //   fileName: 'SyneMono-Regular.ttf',
+  //   family: "'Syne Mono', monospace"
+  // },
+  // {
+  //   name: 'Carter One',
+  //   dirName: 'Carter_One',
+  //   fileName: 'CarterOne-Regular.ttf',
+  //   family: "'Carter One', monospace"
+  // },
+  // {
+  //   name: 'Love Ya Like A Sister',
+  //   dirName: 'Love_Ya_Like_A_Sister',
+  //   fileName: 'LoveYaLikeASister-Regular.ttf',
+  //   family: "'Love Ya Like A Sister', monospace"
+  // },
+  {
+    name: 'Finger Paint',
+    dirName: 'Finger_Paint',
+    fileName: 'FingerPaint-Regular.ttf',
+    family: "'Finger Paint', monospace"
+  },
 
+
+];
+// const SELECT_FONT = FONTS[3];
+
+function ensureFontsInstalled() {
   const platform = os.platform();
   let targetDir = null;
 
@@ -22,21 +53,26 @@ function ensureFontInstalled() {
     targetDir = path.join(process.env.LOCALAPPDATA || path.join(os.homedir(), 'AppData', 'Local'), 'Microsoft', 'Windows', 'Fonts');
   }
 
-  if (targetDir) {
-    try {
-      fs.mkdirSync(targetDir, { recursive: true });
-      const targetPath = path.join(targetDir, fontFileName);
-      if (!fs.existsSync(targetPath)) {
-        fs.copyFileSync(sourcePath, targetPath);
-        console.log(`Installed custom font to ${targetPath}`);
+  if (!targetDir) return;
+
+  try {
+    fs.mkdirSync(targetDir, { recursive: true });
+    for (const font of FONTS) {
+      const sourcePath = path.join(__dirname, '..', font.dirName, font.fileName);
+      if (fs.existsSync(sourcePath)) {
+        const targetPath = path.join(targetDir, font.fileName);
+        if (!fs.existsSync(targetPath)) {
+          fs.copyFileSync(sourcePath, targetPath);
+          console.log(`Installed custom font (${font.name}) to ${targetPath}`);
+        }
       }
-    } catch (e) {
-      console.warn('Could not auto-install font:', e.message);
     }
+  } catch (e) {
+    console.warn('Could not auto-install fonts:', e.message);
   }
 }
 
-ensureFontInstalled();
+ensureFontsInstalled();
 
 const CANVAS_WIDTH = 1080;
 const CANVAS_HEIGHT = 1350;
@@ -44,22 +80,19 @@ const CONTENT_WIDTH = 700;
 const CONTENT_HEIGHT = 500;
 const MIN_FONT_SIZE = 30;
 const MAX_FONT_SIZE = 70;
-const FONT_FAMILY = "'Syne Mono', monospace";
 
 const templates = {
   default: [
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ffe1c8ff' },
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ccdfffff' },
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ffcfd8ff' },
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#c9ffdeff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ffe1c8ff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ccdfffff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ffcfd8ff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#c9ffdeff' },
 
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#80001a' },
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#003a1e' },
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#8f0000' },
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#770046' },
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#21008b' },
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#950101' },
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#000146' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#40000dff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#002d17ff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#0e003eff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#380033ff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#000135ff' },
   ]
 };
 
@@ -160,7 +193,7 @@ function fitText(text, maxWidth, maxHeight) {
   };
 }
 
-function buildSvg({ quote, label, style, textFit }) {
+function buildSvg({ quote, label, style, textFit, fontFamily }) {
   const lines = textFit.lines.map(escapeXml);
   const quoteBlockHeight = textFit.totalHeight;
   // const quoteStartY = 800
@@ -177,8 +210,32 @@ function buildSvg({ quote, label, style, textFit }) {
   <defs>
     <style>
       @font-face {
+        font-family: 'Caacupe One';
+        src: local('Caacupe One'), local('CaacupeOne-Regular');
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
         font-family: 'Syne Mono';
         src: local('Syne Mono'), local('SyneMono-Regular');
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Carter One';
+        src: local('Carter One'), local('CarterOne-Regular');
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Love Ya Like A Sister';
+        src: local('Love Ya Like A Sister'), local('LoveYaLikeASister-Regular');
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Finger Paint';
+        src: local('Finger Paint'), local('FingerPaint-Regular');
         font-weight: 400;
         font-style: normal;
       }
@@ -188,11 +245,11 @@ function buildSvg({ quote, label, style, textFit }) {
   <!-- Dark overlay with 60% opacity -->
   <rect width="100%" height="100%" fill="#000000" fill-opacity="0" />
 
-  <text x="${marginLeft}" y="${quoteStartY}" text-anchor="start" font-family="${FONT_FAMILY}" font-size="${textFit.fontSize}" font-weight="700" fill="${style.text}">
+  <text x="${marginLeft}" y="${quoteStartY}" text-anchor="start" font-family="${fontFamily}" font-size="${textFit.fontSize}" font-weight="700" fill="${style.text}">
     ${tspans}
   </text>
 
-  <text x="${CANVAS_WIDTH / 2}" y="${CANVAS_HEIGHT - 100}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="20" fill="${style.text}" opacity="0.88">@myfavoriteplaylists</text>
+  <text x="${CANVAS_WIDTH / 2}" y="${CANVAS_HEIGHT - 100}" text-anchor="middle" font-family="${fontFamily}" font-size="20" fill="${style.text}" opacity="0.88">@myfavoriteplaylists</text>
 </svg>`.trim();
 }
 
@@ -223,9 +280,17 @@ async function generate(inputPath, outputDir, outputFile) {
     // Add quotes around the quote text
     // quote = '"' + quote + '"';
 
+    // Font selection strategy:
+    // First 100 quotes (0-99) use 'Caacupe One'
+    // Next 100 quotes (100-199) use 'Syne Mono'
+    // (Note: use 'i % FONTS.length' instead if you want to switch font on every single post)
+    const fontIndex = i % FONTS.length;
+    const font = FONTS[fontIndex];
+
+
     const style = templateFor(i);
     const textFit = fitText(quote, CONTENT_WIDTH, CONTENT_HEIGHT);
-    const svg = buildSvg({ quote, label, style, textFit });
+    const svg = buildSvg({ quote, label, style, textFit, fontFamily: font.family });
 
     const filename = `${String(id).padStart(4, '0')}-quote.jpg`;
     const outPath = path.join(outputDir, filename);
@@ -270,9 +335,9 @@ async function generate(inputPath, outputDir, outputFile) {
   console.log(`CSV saved to: ${outputFile}`);
 }
 
-const inputPath = process.argv[2] || path.join(__dirname, 'music_quotes_200.json');
-const outputDir = process.argv[3] || path.join(__dirname, 'music_quotes_200');
-const outputFile = process.argv[4] || path.join(__dirname, 'music_quotes_200.csv');
+const inputPath = process.argv[2] || path.join(__dirname, 'music_engagement_posts_200.json');
+const outputDir = process.argv[3] || path.join(__dirname, 'music_engagement_posts_200');
+const outputFile = process.argv[4] || path.join(__dirname, 'music_engagement_posts_200.csv');
 
 generate(inputPath, outputDir, outputFile).catch((err) => {
   console.error('Generation failed:', err.message);
