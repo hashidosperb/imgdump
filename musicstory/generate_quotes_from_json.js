@@ -3,7 +3,7 @@ const path = require('path');
 const os = require('os');
 const sharp = require('sharp');
 
-const BG_DIR = path.join(__dirname, 'music_bgs');
+const BG_DIR = path.join(__dirname, 'music_bgs5');
 
 const FONTS = [
   // {
@@ -340,7 +340,7 @@ async function generate(projectName, igusername) {
   console.log(`Done. Created ${manifest.length} images.`);
   console.log(`CSV saved to: ${outputFile}`);
 }
-const projectName = "music_story_prompts"
+const projectName = "200_friendship_engagement_posts"
 
 const igusername = "tr3ndingstories"
 
