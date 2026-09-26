@@ -18,18 +18,18 @@ const FONTS = [
   //   fileName: 'SyneMono-Regular.ttf',
   //   family: "'Syne Mono', monospace"
   // },
-  // {
-  //   name: 'Carter One',
-  //   dirName: 'Carter_One',
-  //   fileName: 'CarterOne-Regular.ttf',
-  //   family: "'Carter One', monospace"
-  // },
   {
-    name: 'Love Ya Like A Sister',
-    dirName: 'Love_Ya_Like_A_Sister',
-    fileName: 'LoveYaLikeASister-Regular.ttf',
-    family: "'Love Ya Like A Sister', monospace"
+    name: 'Carter One',
+    dirName: 'Carter_One',
+    fileName: 'CarterOne-Regular.ttf',
+    family: "'Carter One', monospace"
   },
+  // {
+  //   name: 'Love Ya Like A Sister',
+  //   dirName: 'Love_Ya_Like_A_Sister',
+  //   fileName: 'LoveYaLikeASister-Regular.ttf',
+  //   family: "'Love Ya Like A Sister', monospace"
+  // },
   // {
   //   name: 'Finger Paint',
   //   dirName: 'Finger_Paint',
@@ -83,16 +83,16 @@ const MAX_FONT_SIZE = 70;
 
 const templates = {
   default: [
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ffe1c8ff' },
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ccdfffff' },
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ffcfd8ff' },
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#c9ffdeff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ffe1c8ff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ccdfffff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ffcfd8ff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#c9ffdeff' },
 
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#40000dff' },
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#002d17ff' },
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#0e003eff' },
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#380033ff' },
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#000135ff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#40000dff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#002d17ff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#0e003eff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#380033ff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#000135ff' },
   ]
 };
 
