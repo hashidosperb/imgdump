@@ -3,7 +3,7 @@ const path = require('path');
 const os = require('os');
 const sharp = require('sharp');
 
-const BG_DIR = path.join(__dirname, 'music_bgs5');
+const BG_DIR = path.join(__dirname, 'music_bgs');
 
 const FONTS = [
   // {
@@ -18,24 +18,24 @@ const FONTS = [
   //   fileName: 'SyneMono-Regular.ttf',
   //   family: "'Syne Mono', monospace"
   // },
-  // {
-  //   name: 'Carter One',
-  //   dirName: 'Carter_One',
-  //   fileName: 'CarterOne-Regular.ttf',
-  //   family: "'Carter One', monospace"
-  // },
+  {
+    name: 'Carter One',
+    dirName: 'Carter_One',
+    fileName: 'CarterOne-Regular.ttf',
+    family: "'Carter One', monospace"
+  },
   // {
   //   name: 'Love Ya Like A Sister',
   //   dirName: 'Love_Ya_Like_A_Sister',
   //   fileName: 'LoveYaLikeASister-Regular.ttf',
   //   family: "'Love Ya Like A Sister', monospace"
   // },
-  {
-    name: 'Finger Paint',
-    dirName: 'Finger_Paint',
-    fileName: 'FingerPaint-Regular.ttf',
-    family: "'Finger Paint', monospace"
-  },
+  // {
+  //   name: 'Finger Paint',
+  //   dirName: 'Finger_Paint',
+  //   fileName: 'FingerPaint-Regular.ttf',
+  //   family: "'Finger Paint', monospace"
+  // },
 
 
 ];
@@ -249,7 +249,7 @@ function buildSvg({ quote, label, style, textFit, fontFamily }) {
     ${tspans}
   </text>
 
-  <text x="${CANVAS_WIDTH / 2}" y="${CANVAS_HEIGHT - 100}" text-anchor="middle" font-family="${fontFamily}" font-size="20" fill="${style.text}" opacity="0.88">@myfavoriteplaylists</text>
+  <text x="${CANVAS_WIDTH / 2}" y="${CANVAS_HEIGHT - 100}" text-anchor="middle" font-family="${fontFamily}" font-size="20" fill="${style.text}" opacity="0.88">@${igusername}</text>
 </svg>`.trim();
 }
 
@@ -258,7 +258,10 @@ function toCsvValue(value) {
   return `"${str.replace(/"/g, '""')}"`;
 }
 
-async function generate(inputPath, outputDir, outputFile) {
+async function generate(projectName, igusername) {
+  const inputPath = process.argv[2] || path.join(__dirname, `${projectName}.json`);
+  const outputDir = process.argv[3] || path.join(__dirname, `${igusername}/${projectName}`);
+  const outputFile = process.argv[4] || path.join(__dirname, `${igusername}/${projectName}.csv`);
   const raw = fs.readFileSync(inputPath, 'utf8');
   const items = JSON.parse(raw);
 
@@ -309,12 +312,14 @@ async function generate(inputPath, outputDir, outputFile) {
       .jpeg({ quality: 95, mozjpeg: true })
       .toFile(outPath);
 
-    const imageUrl = `https://hashidosperb.github.io/igimages/sendthis_master_quotes_story/${filename}`;
-    const description = `${item.caption}\n${item.hashtags} - @myfavoriteplaylists`;
+    const imageUrl = `https://hashidosperb.github.io/imgdump/musicstory/${igusername}/${projectName}/${filename}`;
+    const description = `${item.caption}\n${item.hashtags} - @${igusername}`;
+    const altText = item.alt_text || quote;
 
     manifest.push({
       description,
-      image_url: imageUrl
+      image_url: imageUrl,
+      alt_text: altText
     });
 
     if ((i + 1) % 100 === 0 || i === items.length - 1) {
@@ -322,10 +327,11 @@ async function generate(inputPath, outputDir, outputFile) {
     }
   }
 
-  const csvHeader = ['description', 'image_url'];
+  const csvHeader = ['description', 'image_url', 'alt_text'];
   const csvRows = manifest.map((row) => [
     toCsvValue(row.description),
-    toCsvValue(row.image_url)
+    toCsvValue(row.image_url),
+    toCsvValue(row.alt_text)
   ].join(','));
 
   const csvContent = [csvHeader.join(','), ...csvRows].join('\n');
@@ -334,12 +340,11 @@ async function generate(inputPath, outputDir, outputFile) {
   console.log(`Done. Created ${manifest.length} images.`);
   console.log(`CSV saved to: ${outputFile}`);
 }
+const projectName = "music_engagement_posts_200"
 
-const inputPath = process.argv[2] || path.join(__dirname, 'music_engagement_posts_200.json');
-const outputDir = process.argv[3] || path.join(__dirname, 'music_engagement_posts_200');
-const outputFile = process.argv[4] || path.join(__dirname, 'music_engagement_posts_200.csv');
+const igusername = "tr3ndingstories"
 
-generate(inputPath, outputDir, outputFile).catch((err) => {
+generate(projectName, igusername).catch((err) => {
   console.error('Generation failed:', err.message);
   process.exit(1);
 });
