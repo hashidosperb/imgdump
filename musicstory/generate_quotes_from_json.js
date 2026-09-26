@@ -3,7 +3,7 @@ const path = require('path');
 const os = require('os');
 const sharp = require('sharp');
 
-const BG_DIR = path.join(__dirname, 'music_bgs2');
+const BG_DIR = path.join(__dirname, 'music_bgs4');
 
 const FONTS = [
   // {
@@ -18,24 +18,24 @@ const FONTS = [
   //   fileName: 'SyneMono-Regular.ttf',
   //   family: "'Syne Mono', monospace"
   // },
-  {
-    name: 'Carter One',
-    dirName: 'Carter_One',
-    fileName: 'CarterOne-Regular.ttf',
-    family: "'Carter One', monospace"
-  },
+  // {
+  //   name: 'Carter One',
+  //   dirName: 'Carter_One',
+  //   fileName: 'CarterOne-Regular.ttf',
+  //   family: "'Carter One', monospace"
+  // },
   // {
   //   name: 'Love Ya Like A Sister',
   //   dirName: 'Love_Ya_Like_A_Sister',
   //   fileName: 'LoveYaLikeASister-Regular.ttf',
   //   family: "'Love Ya Like A Sister', monospace"
   // },
-  // {
-  //   name: 'Finger Paint',
-  //   dirName: 'Finger_Paint',
-  //   fileName: 'FingerPaint-Regular.ttf',
-  //   family: "'Finger Paint', monospace"
-  // },
+  {
+    name: 'Finger Paint',
+    dirName: 'Finger_Paint',
+    fileName: 'FingerPaint-Regular.ttf',
+    family: "'Finger Paint', monospace"
+  },
 
 
 ];
@@ -340,7 +340,7 @@ async function generate(projectName, igusername) {
   console.log(`Done. Created ${manifest.length} images.`);
   console.log(`CSV saved to: ${outputFile}`);
 }
-const projectName = "singers_posts_100"
+const projectName = "music_engagement_posts_200"
 
 const igusername = "tr3ndingstories"
 
