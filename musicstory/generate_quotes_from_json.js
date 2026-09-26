@@ -3,7 +3,7 @@ const path = require('path');
 const os = require('os');
 const sharp = require('sharp');
 
-const BG_DIR = path.join(__dirname, 'music_bgs6');
+const BG_DIR = path.join(__dirname, 'music_bgs5');
 
 const FONTS = [
   // {
@@ -24,18 +24,18 @@ const FONTS = [
   //   fileName: 'CarterOne-Regular.ttf',
   //   family: "'Carter One', monospace"
   // },
-  // {
-  //   name: 'Love Ya Like A Sister',
-  //   dirName: 'Love_Ya_Like_A_Sister',
-  //   fileName: 'LoveYaLikeASister-Regular.ttf',
-  //   family: "'Love Ya Like A Sister', monospace"
-  // },
   {
-    name: 'Finger Paint',
-    dirName: 'Finger_Paint',
-    fileName: 'FingerPaint-Regular.ttf',
-    family: "'Finger Paint', monospace"
+    name: 'Love Ya Like A Sister',
+    dirName: 'Love_Ya_Like_A_Sister',
+    fileName: 'LoveYaLikeASister-Regular.ttf',
+    family: "'Love Ya Like A Sister', monospace"
   },
+  // {
+  //   name: 'Finger Paint',
+  //   dirName: 'Finger_Paint',
+  //   fileName: 'FingerPaint-Regular.ttf',
+  //   family: "'Finger Paint', monospace"
+  // },
 
 
 ];
@@ -83,16 +83,16 @@ const MAX_FONT_SIZE = 70;
 
 const templates = {
   default: [
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ffe1c8ff' },
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ccdfffff' },
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ffcfd8ff' },
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#c9ffdeff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ffe1c8ff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ccdfffff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ffcfd8ff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#c9ffdeff' },
 
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#40000dff' },
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#002d17ff' },
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#0e003eff' },
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#380033ff' },
-    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#000135ff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#40000dff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#002d17ff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#0e003eff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#380033ff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#000135ff' },
   ]
 };
 
@@ -340,7 +340,7 @@ async function generate(projectName, igusername) {
   console.log(`Done. Created ${manifest.length} images.`);
   console.log(`CSV saved to: ${outputFile}`);
 }
-const projectName = "200_random_engagement_posts"
+const projectName = "200_friendship_engagement_posts"
 
 const igusername = "tr3ndingstories"
 
