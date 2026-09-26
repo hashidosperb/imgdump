@@ -18,24 +18,24 @@ const FONTS = [
   //   fileName: 'SyneMono-Regular.ttf',
   //   family: "'Syne Mono', monospace"
   // },
-  {
-    name: 'Carter One',
-    dirName: 'Carter_One',
-    fileName: 'CarterOne-Regular.ttf',
-    family: "'Carter One', monospace"
-  },
+  // {
+  //   name: 'Carter One',
+  //   dirName: 'Carter_One',
+  //   fileName: 'CarterOne-Regular.ttf',
+  //   family: "'Carter One', monospace"
+  // },
   // {
   //   name: 'Love Ya Like A Sister',
   //   dirName: 'Love_Ya_Like_A_Sister',
   //   fileName: 'LoveYaLikeASister-Regular.ttf',
   //   family: "'Love Ya Like A Sister', monospace"
   // },
-  // {
-  //   name: 'Finger Paint',
-  //   dirName: 'Finger_Paint',
-  //   fileName: 'FingerPaint-Regular.ttf',
-  //   family: "'Finger Paint', monospace"
-  // },
+  {
+    name: 'Finger Paint',
+    dirName: 'Finger_Paint',
+    fileName: 'FingerPaint-Regular.ttf',
+    family: "'Finger Paint', monospace"
+  },
 
 
 ];
@@ -342,7 +342,7 @@ async function generate(projectName, igusername) {
 }
 const projectName = "200_friendship_engagement_posts"
 
-const igusername = "tr3ndingstories"
+const igusername = "yeva_rose"
 
 generate(projectName, igusername).catch((err) => {
   console.error('Generation failed:', err.message);
