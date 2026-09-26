@@ -3,7 +3,7 @@ const path = require('path');
 const os = require('os');
 const sharp = require('sharp');
 
-const BG_DIR = path.join(__dirname, 'music_bgs4');
+const BG_DIR = path.join(__dirname, 'music_bgs');
 
 const FONTS = [
   // {
@@ -24,18 +24,18 @@ const FONTS = [
   //   fileName: 'CarterOne-Regular.ttf',
   //   family: "'Carter One', monospace"
   // },
-  // {
-  //   name: 'Love Ya Like A Sister',
-  //   dirName: 'Love_Ya_Like_A_Sister',
-  //   fileName: 'LoveYaLikeASister-Regular.ttf',
-  //   family: "'Love Ya Like A Sister', monospace"
-  // },
   {
-    name: 'Finger Paint',
-    dirName: 'Finger_Paint',
-    fileName: 'FingerPaint-Regular.ttf',
-    family: "'Finger Paint', monospace"
+    name: 'Love Ya Like A Sister',
+    dirName: 'Love_Ya_Like_A_Sister',
+    fileName: 'LoveYaLikeASister-Regular.ttf',
+    family: "'Love Ya Like A Sister', monospace"
   },
+  // {
+  //   name: 'Finger Paint',
+  //   dirName: 'Finger_Paint',
+  //   fileName: 'FingerPaint-Regular.ttf',
+  //   family: "'Finger Paint', monospace"
+  // },
 
 
 ];
@@ -340,7 +340,7 @@ async function generate(projectName, igusername) {
   console.log(`Done. Created ${manifest.length} images.`);
   console.log(`CSV saved to: ${outputFile}`);
 }
-const projectName = "music_engagement_posts_200"
+const projectName = "music_story_prompts"
 
 const igusername = "tr3ndingstories"
 
