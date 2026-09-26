@@ -18,18 +18,18 @@ const FONTS = [
   //   fileName: 'SyneMono-Regular.ttf',
   //   family: "'Syne Mono', monospace"
   // },
-  // {
-  //   name: 'Carter One',
-  //   dirName: 'Carter_One',
-  //   fileName: 'CarterOne-Regular.ttf',
-  //   family: "'Carter One', monospace"
-  // },
   {
-    name: 'Love Ya Like A Sister',
-    dirName: 'Love_Ya_Like_A_Sister',
-    fileName: 'LoveYaLikeASister-Regular.ttf',
-    family: "'Love Ya Like A Sister', monospace"
+    name: 'Carter One',
+    dirName: 'Carter_One',
+    fileName: 'CarterOne-Regular.ttf',
+    family: "'Carter One', monospace"
   },
+  // {
+  //   name: 'Love Ya Like A Sister',
+  //   dirName: 'Love_Ya_Like_A_Sister',
+  //   fileName: 'LoveYaLikeASister-Regular.ttf',
+  //   family: "'Love Ya Like A Sister', monospace"
+  // },
   // {
   //   name: 'Finger Paint',
   //   dirName: 'Finger_Paint',
