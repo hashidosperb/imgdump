@@ -340,7 +340,7 @@ async function generate(projectName, igusername) {
   console.log(`Done. Created ${manifest.length} images.`);
   console.log(`CSV saved to: ${outputFile}`);
 }
-const projectName = "music_engagement_posts_200"
+const projectName = "singers_posts_100"
 
 const igusername = "tr3ndingstories"
 
