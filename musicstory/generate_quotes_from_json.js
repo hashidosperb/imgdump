@@ -3,7 +3,7 @@ const path = require('path');
 const os = require('os');
 const sharp = require('sharp');
 
-const BG_DIR = path.join(__dirname, 'music_bgs5');
+const BG_DIR = path.join(__dirname, 'music_bgs7');
 
 const FONTS = [
   // {
@@ -75,7 +75,7 @@ function ensureFontsInstalled() {
 ensureFontsInstalled();
 
 const CANVAS_WIDTH = 1080;
-const CANVAS_HEIGHT = 1350;
+const CANVAS_HEIGHT = 1440;
 const CONTENT_WIDTH = 700;
 const CONTENT_HEIGHT = 500;
 const MIN_FONT_SIZE = 30;
@@ -88,11 +88,16 @@ const templates = {
     // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#ffcfd8ff' },
     // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#c9ffdeff' },
 
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#40000dff' },
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#002d17ff' },
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#0e003eff' },
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#380033ff' },
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#000135ff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#40000dff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#002d17ff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#0e003eff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#380033ff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#000135ff' },
+
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#000364ff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#003c1fff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#4b3400ff' },
+
   ]
 };
 
@@ -197,7 +202,9 @@ function buildSvg({ quote, label, style, textFit, fontFamily }) {
   const lines = textFit.lines.map(escapeXml);
   const quoteBlockHeight = textFit.totalHeight;
   // const quoteStartY = 800
-  const quoteStartY = 300 + Math.round((CANVAS_HEIGHT - quoteBlockHeight) / 2 + textFit.lineHeight * 0.78) - 30;
+  // const quoteStartY = 300 + Math.round((CANVAS_HEIGHT - quoteBlockHeight) / 2 + textFit.lineHeight * 0.78) - 30;
+  const quoteStartY = Math.round(((CANVAS_HEIGHT / 2) - quoteBlockHeight) / 2 + textFit.lineHeight * 1);
+
   // const marginLeft = (CANVAS_WIDTH - CONTENT_WIDTH) / 2;
   const marginLeft = 130;
 
@@ -249,7 +256,7 @@ function buildSvg({ quote, label, style, textFit, fontFamily }) {
     ${tspans}
   </text>
 
-  <text x="${CANVAS_WIDTH / 2}" y="${CANVAS_HEIGHT - 100}" text-anchor="middle" font-family="${fontFamily}" font-size="20" fill="${style.text}" opacity="0.88">@${igusername}</text>
+  <text x="${CANVAS_WIDTH / 2}" y="${CANVAS_HEIGHT - 80}" text-anchor="middle" font-family="${fontFamily}" font-size="20" fill="${style.text}" opacity="0.88">@${igusername}</text>
 </svg>`.trim();
 }
 
@@ -340,7 +347,7 @@ async function generate(projectName, igusername) {
   console.log(`Done. Created ${manifest.length} images.`);
   console.log(`CSV saved to: ${outputFile}`);
 }
-const projectName = "200_friendship_engagement_posts"
+const projectName = "music_story_song_prompts_300"
 
 const igusername = "tr3ndingstories"
 
