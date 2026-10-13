@@ -349,7 +349,7 @@ async function generate(projectName, igusername) {
 }
 const projectName = "music_story_song_prompts_300"
 
-const igusername = "myfavoriteplaylists"
+const igusername = "yeva_rose"
 
 generate(projectName, igusername).catch((err) => {
   console.error('Generation failed:', err.message);
