@@ -3,7 +3,7 @@ const path = require('path');
 const os = require('os');
 const sharp = require('sharp');
 
-const BG_DIR = path.join(__dirname, 'music_bgs7');
+const BG_DIR = path.join(__dirname, 'music_bgs8');
 
 const FONTS = [
   // {
@@ -76,7 +76,7 @@ ensureFontsInstalled();
 
 const CANVAS_WIDTH = 1080;
 const CANVAS_HEIGHT = 1440;
-const CONTENT_WIDTH = 700;
+const CONTENT_WIDTH = 800;
 const CONTENT_HEIGHT = 500;
 const MIN_FONT_SIZE = 30;
 const MAX_FONT_SIZE = 70;
@@ -94,9 +94,15 @@ const templates = {
     // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#380033ff' },
     // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#000135ff' },
 
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#000364ff' },
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#003c1fff' },
-    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#4b3400ff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#000364ff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#003c1fff' },
+    // { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#4b3400ff' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#4c005f' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#31452c' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#3b299d' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#6b0325' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#023f72' },
+    { bg1: '#282828ff', bg2: '#282828ff', accent: '#AAAAAA', text: '#733ca2' },
 
   ]
 };
@@ -347,9 +353,9 @@ async function generate(projectName, igusername) {
   console.log(`Done. Created ${manifest.length} images.`);
   console.log(`CSV saved to: ${outputFile}`);
 }
-const projectName = "music_story_song_prompts_300"
+const projectName = "400_music_story_posts_with_captions_alt_text"
 
-const igusername = "yeva_rose"
+const igusername = "myfavouriteplaylists"
 
 generate(projectName, igusername).catch((err) => {
   console.error('Generation failed:', err.message);
