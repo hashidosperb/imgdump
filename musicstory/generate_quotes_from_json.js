@@ -262,7 +262,7 @@ function buildSvg({ quote, label, style, textFit, fontFamily }) {
     ${tspans}
   </text>
 
-  <text x="${CANVAS_WIDTH / 2}" y="${CANVAS_HEIGHT - 80}" text-anchor="middle" font-family="${fontFamily}" font-size="20" fill="${style.text}" opacity="0.88">@${igusername}</text>
+  <text x="${CANVAS_WIDTH / 2}" y="${CANVAS_HEIGHT - 80}" text-anchor="middle" font-family="${fontFamily}" font-size="24" fill="${style.text}" opacity="0.88">@${igusername}</text>
 </svg>`.trim();
 }
 
@@ -353,9 +353,9 @@ async function generate(projectName, igusername) {
   console.log(`Done. Created ${manifest.length} images.`);
   console.log(`CSV saved to: ${outputFile}`);
 }
-const projectName = "400_music_story_posts_with_captions_alt_text"
+const projectName = "malayalam_music_posts_deduplicated"
 
-const igusername = "myfavouriteplaylists"
+const igusername = "radio.kuttappan"
 
 generate(projectName, igusername).catch((err) => {
   console.error('Generation failed:', err.message);
