@@ -356,7 +356,7 @@ async function generate(projectName, igusername) {
 }
 const projectName = "indian_music_lover_400_posts_share_this_story"
 
-const igusername = "music.kuttappan"
+const igusername = "yeva_rose"
 
 generate(projectName, igusername).catch((err) => {
   console.error('Generation failed:', err.message);
